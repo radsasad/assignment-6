@@ -1,3 +1,14 @@
+var timeLeft = 3;
+var downloadTimer = setInterval(function () {
+    if (timeLeft <= 0) {
+        clearInterval(downloadTimer);
+        document.getElementById("countdown").innerHTML = "";
+    } else {
+        document.getElementById("countdown").innerHTML = timeLeft + "";
+    }
+    timeLeft -= 1;
+}, 1000);
+
 const removeActiveClass = () => {
     const buttons = document.getElementsByClassName('category-btn');
     for (let btn of buttons) {
@@ -26,6 +37,34 @@ const loadPetDetails = async (petsId) => {
 
 }
 
+const loadCountDownData = (adoptId) => {
+    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${adoptId}`)
+        .then(res => res.json())
+        .then(data => countdownModal(data.petData))
+        .catch(error => console.log(error))
+}
+
+const countdownModal = (adopt) => {
+
+    const countDownContainer = document.getElementById('countdown-container');
+    countDownContainer.innerHTML = "";
+    const div = document.createElement('div');
+    div.classList.add('text-center', 'h-50', 'flex', 'flex-col', 'items-center', 'justify-center', 'gap-3')
+    div.innerHTML = `
+       <img class="w-20" src="assets/handshake.jpg" alt="" srcset="">
+        <h1 class="text-4xl font-bold">congrats</h1>
+        <p>Adoption process is start for your pet ${adopt.pet_name} </p>
+        <div class="text-5xl font-bold" id="countdown">3</div>
+       
+    `
+    countDownContainer.append(div)
+    document.getElementById('countdownModal').showModal()
+    setTimeout(() => {
+        document.getElementById('countdownModal').close()
+    }, 3000);
+
+}
+
 const loadImageData = (imageId) => {
     fetch(`https://openapi.programming-hero.com/api/peddy/pet/${imageId}`)
         .then(res => res.json())
@@ -34,21 +73,27 @@ const loadImageData = (imageId) => {
 
 }
 
-const displayImage =(petImage)=>{
+const displayImage = (petImage) => {
     console.log(petImage)
     const imageContainer = document.getElementById('image-container');
-    const div =document.createElement('div')
-    div.innerHTML =`
+    const div = document.createElement('div')
+    div.innerHTML = `
         <img class="object-cover w-full h-40 rounded-lg lg:h-24" src=${petImage.image} alt=""
                             srcset="">
     `
     imageContainer.append(div)
 }
 
+const loadSortData = () => {
+
+}
+
 const sortDisplay = () => {
     console.log('working')
     displayAllPets(pets)
 }
+
+
 const displayDetails = (petDetails) => {
     const { image, breed, gender, vaccinated_status, pet_details, pet_name, date_of_birth, price } = petDetails;
     const detailsContainer = document.getElementById('modal-container');
@@ -131,7 +176,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
                             <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-dollar-sign"></i> Price : ${price == null ? "Price is not given" : `${price} $`} </p>
                             <div class="flex justify-between mt-3 card-actions">
                                 <button onclick="loadImageData(${petId})" class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200"><i class="fa-regular fa-thumbs-up"></i></button>
-                                <button  class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200">Adopt</button>
+                                <button onclick="loadCountDownData(${petId})"  class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200">Adopt</button>
                                 <button onclick="loadPetDetails(${petId})" class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200">Details</button>
                             </div>
                         </div>
@@ -154,7 +199,7 @@ const displayCategory = (categories) => {
         document.getElementById('spinner').style.display = "block";
         setTimeout(function () {
             loadAllPets()
-        }, 5000)
+        }, 1000)
     })
 
 }

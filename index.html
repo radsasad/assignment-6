@@ -74,25 +74,25 @@
                 </p>
             </div>
             <div id="category-container" class="flex flex-col justify-center gap-2 px-3 mt-20 lg:flex-row lg:gap-10">
-                
+
             </div>
             <div class="flex justify-between px-3 mt-10">
                 <h1 class="ml-5 text-2xl font-bold">Best Deal For you</h1>
-                <button id="sort-btn" class="text-lg text-white btn bg-cyan-700">sort by price</button>
-                
+                <button  id="sort-btn" class="text-lg text-white btn bg-cyan-700">sort by price</button>
+
             </div>
             <div class="flex items-center justify-center mt-6">
                 <span id="spinner" class="loader"></span>
             </div>
             <div class="flex flex-col mt-10 lg:flex-row">
-                
+
                 <div id="all-pets-container"
                     class="grid justify-center grid-cols-1 gap-5 px-4 lg:w-4/5 md:grid-cols-2 lg:grid-cols-3">
-                   
+
                 </div>
                 <div class="p-3 rounded-lg lg:w-1/5 bg-slate-50">
                     <div id="image-container" class="grid grid-cols-2 gap-3 lg:grid-cols-2">
-                        
+
                     </div>
 
                 </div>
@@ -134,18 +134,31 @@
         </nav>
     </footer>
     <!-- You can open the modal using ID.showModal() method -->
-   
+
     <dialog id="customModal" class="modal">
         <div class="modal-box">
             <form method="dialog">
                 <button class="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
             </form>
-           <div id="modal-container">
+            <div id="modal-container">
 
-           </div>
+            </div>
         </div>
     </dialog>
+
+    <!-- Open the modal using ID.showModal() method -->
+    
+    <dialog id="countdownModal" class="modal">
+        <div class="modal-box">
+            <div id="countdown-container" class="">
+               
+            </div>
+            
+        </div>
+    </dialog>
+    <script src="js/countdown.js"></script>
     <script src="js/pet.js"></script>
+    
 </body>
 
 </html>

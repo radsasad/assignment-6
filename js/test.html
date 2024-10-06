@@ -2,57 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=  <button id="sortButton">Sort Data</button>
-    <ul id="dataList"></ul>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Second Countdown</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #282c34;
+}
 
-    <script src="app.js"></script>, initial-scale=1.0">
-    <title>Document</title>
+.countdown {
+    font-size: 100px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+    </style>
 </head>
 <body>
-    <button id="sortButton">Sort Data</button>
-    <ul id="dataList"></ul>
+    <div class="countdown" id="countdown">3</div>
+
+    <script src="script.js"></script>
 </body>
 <script>
-    // API URL
-const apiUrl = 'https://jsonplaceholder.typicode.com/users';  // Sample API for users
+    let countdown = document.getElementById('countdown');
+let timeLeft = 3;
 
-let data = [];
+const interval = setInterval(() => {
+    countdown.textContent = timeLeft;
+    timeLeft--;
 
-// Function to fetch data from API
-async function fetchData() {
-    try {
-        const response = await fetch(apiUrl);
-        data = await response.json();  // Store the fetched data
-        displayData(data);  // Display the data initially
-    } catch (error) {
-        console.error('Error fetching data:', error);
+    if (timeLeft < 0) {
+        clearInterval(interval);
+        countdown.textContent = 'Go!';
     }
-}
-
-// Function to display data
-function displayData(arr) {
-    const dataList = document.getElementById('dataList');
-    dataList.innerHTML = '';  // Clear existing list
-
-    arr.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item.name;  // Display user names (or other relevant info)
-        dataList.appendChild(li);
-    });
-}
-
-// Function to sort data by name
-function sortData() {
-    console.log(data)
-    data.sort((a, b) => a.name.localeCompare(b.name));  // Sort data alphabetically by name
-    displayData(data);  // Redisplay sorted data
-}
-
-// Adding event listener to button for sorting
-document.getElementById('sortButton').addEventListener('click', sortData);
-
-// Fetch and display data initially
-fetchData();
-
+}, 1000);
 </script>
 </html>
