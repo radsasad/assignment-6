@@ -19,7 +19,6 @@ const loadAllPets = () => {
 }
 
 const loadPetDetails = async (petsId) => {
-    console.log(petsId)
     const url = `https://openapi.programming-hero.com/api/peddy/pet/${petsId}`;
     const res = await fetch(url);
     const data = await res.json();
@@ -27,8 +26,31 @@ const loadPetDetails = async (petsId) => {
 
 }
 
+const loadImageData = (imageId) => {
+    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${imageId}`)
+        .then(res => res.json())
+        .then(data => displayImage(data.petData))
+        .catch(error => console.log(error))
+
+}
+
+const displayImage =(petImage)=>{
+    console.log(petImage)
+    const imageContainer = document.getElementById('image-container');
+    const div =document.createElement('div')
+    div.innerHTML =`
+        <img class="object-cover w-full h-40 rounded-lg lg:h-24" src=${petImage.image} alt=""
+                            srcset="">
+    `
+    imageContainer.append(div)
+}
+
+const sortDisplay = () => {
+    console.log('working')
+    displayAllPets(pets)
+}
 const displayDetails = (petDetails) => {
-    const { image, breed, gender, vaccinated_status, pet_details, pet_name ,date_of_birth ,price} = petDetails;
+    const { image, breed, gender, vaccinated_status, pet_details, pet_name, date_of_birth, price } = petDetails;
     const detailsContainer = document.getElementById('modal-container');
     detailsContainer.innerHTML = `
         <div>
@@ -40,7 +62,7 @@ const displayDetails = (petDetails) => {
                     <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-calendar-days"></i> Birth: ${date_of_birth == null ? "data not found" : date_of_birth}</p>
                     <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-mercury"></i> Gender: ${gender == null ? "data not found" : gender}</p>
                     <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-dollar-sign"></i> Price : ${price == null ? "Price is not given" : `${price} $`} </p>
-                    <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-virus"></i> Vaccinated status : ${vaccinated_status == null ? "Price is not given" : `${vaccinated_status}`} </p>
+                    <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-virus"></i> Vaccinated status : ${vaccinated_status == null ? " not given" : `${vaccinated_status}`} </p>
                     
                 </div>
                 <hr />
@@ -71,6 +93,7 @@ const loadCategoryPets = (category) => {
 }
 
 const displayAllPets = (pets) => {
+
     const petsContainer = document.getElementById('all-pets-container');
     petsContainer.innerHTML = "";
     if (pets.length == 0) {
@@ -90,6 +113,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     else {
         petsContainer.classList.add('grid');
     }
+    document.getElementById('spinner').style.display = "none";
     pets.forEach((pet) => {
         const { petId, breed, category, image, pet_name, date_of_birth, gender, price } = pet;
         const card = document.createElement('div')
@@ -106,8 +130,8 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
                             <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-mercury"></i> Gender: ${gender == null ? "data not found" : gender}</p>
                             <p class="py-1 text-sm font-semibold text-zinc-500"><i class="fa-solid fa-dollar-sign"></i> Price : ${price == null ? "Price is not given" : `${price} $`} </p>
                             <div class="flex justify-between mt-3 card-actions">
-                                <button class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200"><i class="fa-regular fa-thumbs-up"></i></button>
-                                <button class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200">Adopt</button>
+                                <button onclick="loadImageData(${petId})" class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200"><i class="fa-regular fa-thumbs-up"></i></button>
+                                <button  class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200">Adopt</button>
                                 <button onclick="loadPetDetails(${petId})" class="px-4 py-1 text-base font-semibold rounded-md text-cyan-900 bg-slate-200">Details</button>
                             </div>
                         </div>
@@ -127,7 +151,13 @@ const displayCategory = (categories) => {
                         src=${category_icon} alt="" srcset=""> ${category}</button>
         `
         categoriesContainer.append(div)
+        document.getElementById('spinner').style.display = "block";
+        setTimeout(function () {
+            loadAllPets()
+        }, 5000)
     })
+
 }
+document.getElementById('sort-btn').addEventListener('click', sortDisplay)
 loadAllPets()
 loadCategory()

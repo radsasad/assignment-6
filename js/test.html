@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=  <button id="sortButton">Sort Data</button>
+    <ul id="dataList"></ul>
+
+    <script src="app.js"></script>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="sortButton">Sort Data</button>
+    <ul id="dataList"></ul>
+</body>
+<script>
+    // API URL
+const apiUrl = 'https://jsonplaceholder.typicode.com/users';  // Sample API for users
+
+let data = [];
+
+// Function to fetch data from API
+async function fetchData() {
+    try {
+        const response = await fetch(apiUrl);
+        data = await response.json();  // Store the fetched data
+        displayData(data);  // Display the data initially
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+// Function to display data
+function displayData(arr) {
+    const dataList = document.getElementById('dataList');
+    dataList.innerHTML = '';  // Clear existing list
+
+    arr.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.name;  // Display user names (or other relevant info)
+        dataList.appendChild(li);
+    });
+}
+
+// Function to sort data by name
+function sortData() {
+    console.log(data)
+    data.sort((a, b) => a.name.localeCompare(b.name));  // Sort data alphabetically by name
+    displayData(data);  // Redisplay sorted data
+}
+
+// Adding event listener to button for sorting
+document.getElementById('sortButton').addEventListener('click', sortData);
+
+// Fetch and display data initially
+fetchData();
+
+</script>
+</html>
