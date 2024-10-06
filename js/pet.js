@@ -1,13 +1,4 @@
-var timeLeft = 3;
-var downloadTimer = setInterval(function () {
-    if (timeLeft <= 0) {
-        clearInterval(downloadTimer);
-        document.getElementById("countdown").innerHTML = "";
-    } else {
-        document.getElementById("countdown").innerHTML = timeLeft + "";
-    }
-    timeLeft -= 1;
-}, 1000);
+
 
 const removeActiveClass = () => {
     const buttons = document.getElementsByClassName('category-btn');
@@ -44,6 +35,14 @@ const loadCountDownData = (adoptId) => {
         .catch(error => console.log(error))
 }
 
+const loadImageData = (imageId) => {
+    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${imageId}`)
+        .then(res => res.json())
+        .then(data => displayImage(data.petData))
+        .catch(error => console.log(error))
+
+}
+
 const countdownModal = (adopt) => {
 
     const countDownContainer = document.getElementById('countdown-container');
@@ -65,13 +64,7 @@ const countdownModal = (adopt) => {
 
 }
 
-const loadImageData = (imageId) => {
-    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${imageId}`)
-        .then(res => res.json())
-        .then(data => displayImage(data.petData))
-        .catch(error => console.log(error))
 
-}
 
 const displayImage = (petImage) => {
     console.log(petImage)
@@ -85,12 +78,19 @@ const displayImage = (petImage) => {
 }
 
 const loadSortData = () => {
-
+    fetch('https://openapi.programming-hero.com/api/peddy/pets')
+    .then(res => res.json())
+    .then(data =>{
+        
+        const sortedPets = data.pets.sort((a, b) => b.price - a.price);
+        sortDisplay(sortedPets)
+    })
+    .catch(error => console.log(error))
 }
 
-const sortDisplay = () => {
-    console.log('working')
-    displayAllPets(pets)
+const sortDisplay = (sorts) => {
+    displayAllPets(sorts)
+    
 }
 
 
