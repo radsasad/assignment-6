@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header class="mx-auto lg:px-40 ">
+        <div class="navbar ">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        <li><a>Home</a></li>
+                        <li><a>Shop</a></li>
+                        <li><a>Contact</a></li>
+
+                    </ul>
+                </div>
+                <a class="text-xl btn btn-ghost"><img src="assets/logo.png" alt="" srcset=""> Peddy</a>
+            </div>
+            <div class="hidden navbar-center lg:flex">
+                <ul class="px-1 text-lg menu menu-horizontal">
+                    <li><a>Home</a></li>
+                    <li><a>Shop</a></li>
+                    <li><a>Contact</a></li>
+                </ul>
+            </div>
+            <div class="navbar-end">
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component"
+                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col items-center justify-center gap-5 mt-10">
+            <p class="text-lg font-semibold text-gray-600">Bringing Families Together ❤️‍</p>
+            <h1 class="font-semibold text-center text-7xl">Your Path to Adoption <br> Starts Here</h1>
+            <p class="text-base font-medium text-center">Pets are domesticated animals kept for companionship,
+                entertainment, or support. They can range from common choices like <br> dogs and cats to more exotic
+                animals like reptiles, birds, or fish.</p>
+            <button type="button" class="text-lg font-semibold text-white btn bg-cyan-700">view more</button>
+
+            <img src="assets/pet.webp" alt="" srcset="">
+        </div>
+    </header>
+    <main class="mx-auto mb-20 lg:px-40">
+        <section>
+            <div class="text-center">
+                <h1 class="mt-10 text-5xl font-semibold">Adopt Your Best Friend</h1>
+                <p class="mt-5 text-lg">Pets often bring emotional comfort, help reduce stress, and improve their
+                    owners' well-being. They also teach responsibility,<br>
+                    especially to children, as they require care, attention, feeding, and sometimes medical checkups..
+                </p>
+            </div>
+            <div id="category-container" class="flex flex-col justify-center gap-2 px-3 mt-20 lg:flex-row lg:gap-10">
+                
+            </div>
+            <div class="flex justify-between px-3 mt-10">
+                <h1 class="ml-5 text-2xl font-bold">Best Deal For you</h1>
+                <button class="text-lg text-white btn bg-cyan-700">sort by price</button>
+            </div>
+            <div  class="flex flex-col mt-10 lg:flex-row">
+                <div id="all-pets-container" class="grid justify-center grid-cols-1 gap-5 px-4 lg:w-4/5 md:grid-cols-2 lg:grid-cols-3">                   
+                    
+                </div>
+                <div class="p-3 rounded-lg lg:w-1/5 bg-slate-50">
+                   <div class="grid grid-cols-2 gap-3 lg:grid-cols-2">
+                      <img class="object-cover w-full h-40 rounded-lg lg:h-24" src="assets/1056251.jpeg" alt="" srcset="">
+                      <img class="object-cover w-full h-40 rounded-lg lg:h-24" src="assets/127028.webp" alt="" srcset="">
+                      <img class="object-cover w-full h-40 rounded-lg lg:h-24" src="assets/1472999.jpeg" alt="" srcset="">
+                      <img class="object-cover w-full h-40 rounded-lg lg:h-24" src="assets/ss.webp" alt="" srcset="">
+                      <img class="object-cover w-full h-40 rounded-lg lg:h-24" src="assets/127028.webp" alt="" srcset="">
+                      <img class="object-cover w-full h-40 rounded-lg lg:h-24" src="assets/1056251.jpeg" alt="" srcset="">
+                   </div>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="p-10 footer bg-neutral text-neutral-content">
+        <nav> 
+           <div class="flex items-center justify-center gap-3">
+            <img src="assets/logo.png" alt="" srcset="">
+            <h1 class="text-xl font-bold">Peddy</h1>
+           </div>
+           <p>Location: av. Washington 165, NY CA 54003 </p> 
+           <p>Phone: +31 85 964 47 25</p> 
+           <p>Email: info@yourdomain.com </p> 
+           <p>Openings hours: 9.00 AM - 5.00 PM </p> 
+          <div class="flex gap-4 text-2xl">
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+          </div>
+          
+        </nav>
+        <nav>
+          <h6 class="footer-title">Useful link</h6>
+          <a class="link link-hover">Home</a>
+          <a class="link link-hover">About us</a>
+          <a class="link link-hover">Animals</a>
+          <a class="link link-hover">Foundation</a>
+          <a class="link link-hover">Contact</a>
+        </nav>
+        <nav>
+          <h6 class="footer-title">Drop a Message</h6>
+          <input type="text" placeholder="Enter your email" class="w-full max-w-xs bg-slate-700 input input-bordered" />
+          <button class="w-full text-lg text-white border-none btn bg-cyan-700">Subscribe</button>
+        </nav>
+      </footer>
+      <script src="js/pet.js"></script>
+</body>
+
+</html>
